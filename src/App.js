@@ -24,7 +24,7 @@ function App() {
 	const dispatch = useDispatch();
 	const [socket, setSocket] = Socket.useContainer();
 	useEffect(() => {
-		const newSocket = io("ws://192.168.29.68:3001/remote", {
+		const newSocket = io("ws://192.168.29.147:3001/remote", {
 			reconnectionDelayMax: 3000,
 			transports: ["websocket"],
 		});
