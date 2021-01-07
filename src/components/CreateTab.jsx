@@ -7,8 +7,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { Socket } from "../services/sockets";
 
 function mapStateToProps(state) {
-	return {
-	};
+	return {};
 }
 function mapDispatchToProps(dispatch) {
 	return {
@@ -19,16 +18,14 @@ function mapDispatchToProps(dispatch) {
 const Home = ({ create }) => {
 	const [socket] = Socket.useContainer();
 	return (
-    <Col span={4}>
-		<Button
-      size="large"
-			onClick={() => {
-				create({ socket });
-			}}
-			shape="circle"
-			icon={<PlusOutlined />}
-		/>
-    </Col>
+		<Col span={4}>
+			<PlusOutlined
+				style={{ fontSize: 60 }}
+				onClick={() => {
+					create({ socket });
+				}}
+			/>
+		</Col>
 	);
 };
 

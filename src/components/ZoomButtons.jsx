@@ -23,23 +23,19 @@ const Home = ({ id, zoomIn, zoomOut }) => {
 	return (
 		<>
 			<Col span={4}>
-				<Button
-					size="large"
+				<ZoomOutOutlined
 					onClick={() => {
 						zoomOut({ socket, id });
 					}}
-					shape="circle"
-					icon={<ZoomOutOutlined />}
+					style={{ fontSize: 60 }}
 				/>
 			</Col>
 			<Col span={4}>
-				<Button
-					size="large"
+				<ZoomInOutlined
 					onClick={() => {
 						zoomIn({ socket, id });
 					}}
-					shape="circle"
-					icon={<ZoomInOutlined /> }
+					style={{ fontSize: 60 }}
 				/>
 			</Col>
 		</>

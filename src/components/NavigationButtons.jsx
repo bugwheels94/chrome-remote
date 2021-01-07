@@ -23,23 +23,19 @@ const Home = ({ id, goForward, goBackward }) => {
 	return (
 		<>
 			<Col span={4}>
-				<Button
-					size="large"
+				<ArrowLeftOutlined
 					onClick={() => {
 						goBackward({ socket, id });
 					}}
-					shape="circle"
-					icon={<ArrowLeftOutlined />}
+					style={{ fontSize: 60 }}
 				/>
 			</Col>
 			<Col span={4}>
-				<Button
-					size="large"
+				<ArrowRightOutlined
 					onClick={() => {
 						goForward({ socket, id });
 					}}
-					shape="circle"
-					icon={<ArrowRightOutlined />}
+					style={{ fontSize: 60 }}
 				/>
 			</Col>
 		</>

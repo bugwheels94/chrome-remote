@@ -10,7 +10,7 @@ import { Socket } from "../services/sockets";
 function mapStateToProps(state) {
 	return {
 		id: state.tabs.selectedEntityId,
-		tab: selectors.selectById(state, state.tabs.selectedEntityId)
+		tab: selectors.selectById(state, state.tabs.selectedEntityId),
 	};
 }
 function mapDispatchToProps(dispatch) {
@@ -23,38 +23,31 @@ function mapDispatchToProps(dispatch) {
 
 const Home = ({ id, muteTab, tab, playVideo, fullscreenVideo }) => {
 	const [socket] = Socket.useContainer();
-	if (!tab) return null
+	if (!tab) return null;
 	return (
 		<>
 			<Col span={4}>
-				<Button
-					size="large"
+				<PlayCircleOutlined
+					style={{ fontSize: 60 }}
 					onClick={() => {
 						playVideo({ socket, id });
 					}}
-					shape="circle"
-					icon={<PlayCircleOutlined />}
 				/>
 			</Col>
 			<Col span={4}>
-				<Button
-					size="large"
+				<FullscreenOutlined
+					style={{ fontSize: 60 }}
 					onClick={() => {
 						fullscreenVideo({ socket, id });
 					}}
-					shape="circle"
-					icon={<FullscreenOutlined />}
 				/>
 			</Col>
 			<Col span={4}>
-				<Button
-					size="large"
-					danger={tab.mutedInfo.muted}
+				<SoundOutlined
+					style={{ fontSize: 60 }}
 					onClick={() => {
-						muteTab({ socket, id, muted: !tab.mutedInfo.muted  });
+						muteTab({ socket, id, muted: !tab.mutedInfo.muted });
 					}}
-					shape="circle"
-					icon={<SoundOutlined />}
 				/>
 			</Col>
 		</>

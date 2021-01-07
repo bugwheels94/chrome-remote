@@ -14,7 +14,8 @@ import { Space, Row } from 'antd';
 import { createTab, removeTab, updateTab, readTabs, setActive } from "./store/tabs/slice";
 import { createBookmark, removeBookmark, readBookmarks } from "./store/bookmarks/slice";
 import VideoPlayerButtons from "./components/VideoPlayerButtons";
-import ScrollButton from "./components/ScrollButton";
+import PointerButton from "./components/PointerButton";
+import SiteSearch from "./components/SiteSearch";
 
 const io = require("socket.io-client");
 
@@ -23,12 +24,11 @@ function App() {
 	const dispatch = useDispatch();
 	const [socket, setSocket] = Socket.useContainer();
 	useEffect(() => {
-		const newSocket = io("ws://192.168.29.69:3001/remote", {
+		const newSocket = io("ws://192.168.29.68:3001/remote", {
 			reconnectionDelayMax: 3000,
 			transports: ["websocket"],
 		});
 		newSocket.emitPromise = function (event, ...args) {
-			console.log("Emitting", event, " with ", args);
 			return new Promise((rs, rj) => {
 				newSocket.emit(event, ...(args || []), (res) => {
 					rs(res);
@@ -54,7 +54,6 @@ function App() {
 			});
 		});
 		newSocket.on("createdTab", (tab) => {
-			console.log("Tab Created", tab);
 			dispatch({
 				...createTab.fulfilled(),
 				payload: tab,
@@ -67,7 +66,6 @@ function App() {
 			});
 		});
 		newSocket.on("updatedTab", (tab) => {
-			console.log("Tab Updated", tab);
 			dispatch({
 				...updateTab.fulfilled(),
 				meta: {
@@ -79,7 +77,6 @@ function App() {
 			});
 		});
 		newSocket.on("activatedTab", (tab) => {
-			console.log("Tab Activated", tab);
 			dispatch(setActive(tab));
 		});
 		newSocket.on("bookmarks", (bookmarks) => {
@@ -91,7 +88,6 @@ function App() {
 			});
 		});
 		newSocket.on("createdBookmark", (bookmark) => {
-			console.log("Bookmark Created", bookmark);
 			dispatch({
 				...createBookmark.fulfilled(),
 				payload: bookmark,
@@ -116,7 +112,8 @@ function App() {
         <ZoomButtons />
         <ReloadTab />
         <VideoPlayerButtons /> 
-        <ScrollButton /> 
+        <PointerButton /> 
+        <SiteSearch /> 
 
       </Row>
 			<Tabs />

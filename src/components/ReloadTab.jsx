@@ -21,13 +21,11 @@ const Home = ({ reloadTab, id }) => {
 	const [socket] = Socket.useContainer();
 	return (
     <Col span={4}>
-		<Button
-      size="large"
+		<ReloadOutlined
 			onClick={() => {
 				reloadTab({ socket, id });
 			}}
-			shape="circle"
-			icon={<ReloadOutlined />}
+			style={{ fontSize: 60 }}
 		/>
     </Col>
 	);

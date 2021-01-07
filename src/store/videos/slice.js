@@ -28,7 +28,6 @@ const slice = createSlice({
 });
 export const { setActive } = slice.actions;
 export const selectors = entityAdapter.getSelectors((state) => {
-	console.log(state)
 	return state.tabs
 });
 export default slice.reducer;

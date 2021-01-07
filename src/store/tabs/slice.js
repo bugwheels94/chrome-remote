@@ -44,7 +44,6 @@ export const updateTab = createAsyncThunkPlus(
 export const removeTab = createAsyncThunkPlus(
 	"tabs/remove",
 	({ socket, ...options }) => {
-		console.log(options);
 		return socket.emitPromise("removeTab", options);
 	},
 	{
@@ -109,7 +108,6 @@ const slice = createSlice({
 });
 export const { setActive } = slice.actions;
 export const selectors = entityAdapter.getSelectors((state) => {
-	console.log(state)
 	return state.tabs
 });
 export default slice.reducer;
