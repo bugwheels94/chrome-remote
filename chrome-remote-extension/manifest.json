@@ -7,12 +7,11 @@
 		"scripts": ["public/background.js"],
 		"persistent": false
 	},
-	"permissions": ["system.network", "tabs", "history", "search", "bookmarks", "activeTab"],
+	"permissions": ["tabs", "history", "search", "bookmarks", "activeTab"],
 	"content_scripts": [
 		{
 			"matches": ["*://*/*"],
 			"js": ["public/contentScript.js"]
 		}
-	],
-	"sockets": { "tcpServer": { "listen": ":8080" } }
+	]
 }
