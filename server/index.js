@@ -3,16 +3,23 @@ var http = require("http").createServer(app);
 var io = require("socket.io")(http);
 const tvNamespace = io.of("/tv");
 var robot = require("robotjs");
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
+async function mute() {
+  const { stdout, stderr } = await exec('amixer set Master toggle');
+  console.log('stdout:', stdout);
+  console.log('stderr:', stderr);
+}
 const remoteNamespace = io.of("/remote");
 
 app.get("/", (req, res) => {
-	res.sendFile(__dirname + "/../public/index.html");
+	res.sendFile(__dirname + "/../build/index.html");
 });
 let tvSocket;
 tvNamespace.on("connection", (socket) => {
 	tvSocket = socket;
-
+	console.log("TV Connected!")
 	// Broadcast to all remotes to get the state right
 	socket.on("tvState", (tabs) => {
 		remoteNamespace.emit("tvState", tabs);
@@ -43,6 +50,7 @@ tvNamespace.on("connection", (socket) => {
 });
 
 remoteNamespace.on("connection", async (socket) => {
+	console.log("Remote Connected!")
 	// Request TV state to get it on new remote
 	if (tvSocket) {
 		tvSocket.emit("readTvState", (tabs) => {
@@ -132,6 +140,12 @@ remoteNamespace.on("connection", async (socket) => {
 		if (!tvSocket) return;
 		tvSocket.emit("scroll", id, coordiantes, callback);
   });
+	socket.on("mute", async (callback) => {
+		// if (!tvSocket) return;
+		// tvSocket.emit("scroll", id, coordiantes, callback);\
+		await mute()
+		callback()
+  });
 
 
 	socket.on("click", (callback) => {
@@ -148,6 +162,7 @@ remoteNamespace.on("connection", async (socket) => {
 
 });
 
+console.log("BYE")
 http.listen(3001, () => {
 	console.log("listening on *:3001");
 });

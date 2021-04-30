@@ -46,7 +46,9 @@ const Home = ({ id, muteTab, tab, playVideo, fullscreenVideo }) => {
 				<SoundOutlined
 					style={{ fontSize: 60 }}
 					onClick={() => {
-						muteTab({ socket, id, muted: !tab.mutedInfo.muted });
+						socket.emitPromise('mute');
+
+				//		muteTab({ socket, id, muted: !tab.mutedInfo.muted });
 					}}
 				/>
 			</Col>
