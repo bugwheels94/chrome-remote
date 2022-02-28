@@ -15,7 +15,6 @@
 		"lodash.throttle": "^4.1.1",
 		"web-vitals": "^0.2.4"
 	},
-	"homepage": "/chrome-remote",
 	"devDependencies": {
 		"@ant-design/icons": "^4.3.0",
 		"@reduxjs/toolkit": "^1.5.0",
