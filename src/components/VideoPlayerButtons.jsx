@@ -3,7 +3,7 @@ import React from "react";
 import { updateTab, selectors } from "../store/tabs/slice";
 import { playVideo, fullscreenVideo } from "../store/videos/slice";
 
-import { Row, Col, Button } from "antd";
+import { Col } from "antd";
 import { SoundOutlined, FullscreenOutlined, PlayCircleOutlined } from "@ant-design/icons";
 import { Socket } from "../services/sockets";
 
@@ -46,9 +46,9 @@ const Home = ({ id, muteTab, tab, playVideo, fullscreenVideo }) => {
 				<SoundOutlined
 					style={{ fontSize: 60 }}
 					onClick={() => {
-						socket.emitPromise('mute');
+						socket.emitPromise("mute");
 
-				//		muteTab({ socket, id, muted: !tab.mutedInfo.muted });
+						//		muteTab({ socket, id, muted: !tab.mutedInfo.muted });
 					}}
 				/>
 			</Col>

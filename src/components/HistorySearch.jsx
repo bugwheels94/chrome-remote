@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Row, Col, List, Avatar } from "antd";
-import { useSwipeable } from "react-swipeable";
 import { removeTab, updateTab, searchInTab } from "../store/tabs/slice";
 import { connect } from "react-redux";
 import { Socket } from "../services/sockets";
@@ -54,7 +52,7 @@ const Home = ({ updateTab, searchInTab, selectedEntityId }) => {
 			onChange={onChange}
 			onBlur={onBlur}
 			value={value}
-      style={{ display: "block" }}
+			style={{ display: "block" }}
 		>
 			<Input.Search size="large" placeholder="input here" enterButton onSearch={onCustomSearch} />
 		</AutoComplete>

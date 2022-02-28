@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React from "react";
-import { readTabs, selectors, removeTab } from "../store/tabs/slice";
-import { Row, Col, List, Avatar } from "antd";
+import { selectors } from "../store/tabs/slice";
+import { List } from "antd";
 import Tab from "./Tab.jsx";
 function mapStateToProps(state) {
 	return {

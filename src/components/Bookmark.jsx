@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, List, Avatar } from "antd";
+import { List } from "antd";
 import { useSwipeable } from "react-swipeable";
 import { removeBookmark } from "../store/bookmarks/slice";
 import { createTab } from "../store/tabs/slice";
@@ -19,13 +19,7 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const Home = ({
-	title,
-	id,
-	removeBookmark,
-	createTab,
-	url
-}) => {
+const Home = ({ title, id, removeBookmark, createTab, url }) => {
 	const [socket] = Socket.useContainer();
 	const [distance, setDistance] = useState(0);
 	const handlers = useSwipeable({

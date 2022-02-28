@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import React from "react";
 import { reloadTab } from "../store/tabs/slice";
 
-import { Row, Col, Button } from "antd";
+import { Col } from "antd";
 import { ReloadOutlined } from "@ant-design/icons";
 import { Socket } from "../services/sockets";
 
@@ -20,14 +20,14 @@ function mapDispatchToProps(dispatch) {
 const Home = ({ reloadTab, id }) => {
 	const [socket] = Socket.useContainer();
 	return (
-    <Col span={4}>
-		<ReloadOutlined
-			onClick={() => {
-				reloadTab({ socket, id });
-			}}
-			style={{ fontSize: 60 }}
-		/>
-    </Col>
+		<Col span={4}>
+			<ReloadOutlined
+				onClick={() => {
+					reloadTab({ socket, id });
+				}}
+				style={{ fontSize: 60 }}
+			/>
+		</Col>
 	);
 };
 

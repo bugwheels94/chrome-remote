@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import React from "react";
-import { readTabs, selectors, removeTab } from "../store/bookmarks/slice";
-import { Row, Col, List, Avatar } from "antd";
+import { selectors } from "../store/bookmarks/slice";
+import { List } from "antd";
 import Bookmark from "./Bookmark.jsx";
 function mapStateToProps(state) {
 	return {

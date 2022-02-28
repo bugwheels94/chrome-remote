@@ -6,6 +6,7 @@
 		"useTabs": true,
 		"printWidth": 100
 	},
+	"main": "index.js",
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.4",
 		"@testing-library/react": "^11.1.0",

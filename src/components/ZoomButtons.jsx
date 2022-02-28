@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import React from "react";
 import { zoomOut, zoomIn } from "../store/tabs/slice";
 
-import { Row, Col, Button } from "antd";
+import { Col } from "antd";
 import { ZoomInOutlined, ZoomOutOutlined } from "@ant-design/icons";
 import { Socket } from "../services/sockets";
 

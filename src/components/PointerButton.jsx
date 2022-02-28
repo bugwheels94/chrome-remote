@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { reloadTab } from "../store/tabs/slice";
 
-import { Row, Col, Button } from "antd";
+import { Col } from "antd";
 import { DragOutlined, CloseSquareFilled } from "@ant-design/icons";
 import { Socket } from "../services/sockets";
-import { useSwipeable } from "react-swipeable";
 
 import debounce from "lodash.throttle";
 function mapStateToProps(state) {
@@ -30,20 +29,19 @@ const Board = ({ showBoard, id }) => {
 		} else event.current = "moveMouse";
 	};
 	const sendMove = debounce((c) => {
-		if(coord.current)
-			socket.emitPromise(event.current, id, coords.current);
-		coord.current = c
-		coords.current = []
-	}, 100)
+		if (coord.current) socket.emitPromise(event.current, id, coords.current);
+		coord.current = c;
+		coords.current = [];
+	}, 100);
 	const touchMove = (e) => {
 		const current = {
 			x: e.touches[0].pageX,
 			y: e.touches[0].pageY,
 		};
-		sendMove(current)
+		sendMove(current);
 		coords.current.push({
 			x: current.x - coord.current.x,
-			y: current.y - coord.current.y,				
+			y: current.y - coord.current.y,
 		});
 	};
 	return (
@@ -64,8 +62,8 @@ const Board = ({ showBoard, id }) => {
 		>
 			<CloseSquareFilled
 				onClick={(e) => {
-					showBoard(false)
-					e.stopPropagation()
+					showBoard(false);
+					e.stopPropagation();
 				}}
 				size="large"
 				style={{ position: "fixed", top: 0, right: 0, fontSize: 80 }}

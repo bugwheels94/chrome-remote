@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, List, Avatar } from "antd";
+import { List, Avatar } from "antd";
 import { useSwipeable } from "react-swipeable";
 import { removeTab, updateTab } from "../store/tabs/slice";
 import { connect } from "react-redux";
@@ -28,9 +28,9 @@ const Home = ({
 	removeTab,
 	updateTab,
 	windowId,
-  selectedEntityId,
-  url,
-  createBookmark
+	selectedEntityId,
+	url,
+	createBookmark,
 }) => {
 	const [socket] = Socket.useContainer();
 	const [distance, setDistance] = useState(0);

@@ -151,7 +151,7 @@ export default function createAsyncThunkPlus(
 		};
 	} else {
 		// no CRUD mode
-		intermediate.reducers[intermediate.fulfilled] = (state, {}) => {
+		intermediate.reducers[intermediate.fulfilled] = (state) => {
 			const [node, key] = getNode(state);
 			node[key] = {
 				fulfilled: true,

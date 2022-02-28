@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Row, Col, List, Avatar } from "antd";
-import { useSwipeable } from "react-swipeable";
+import React from "react";
 import { removeTab, updateTab, searchInTab } from "../store/tabs/slice";
 import { connect } from "react-redux";
 import { Socket } from "../services/sockets";
-import { Input, AutoComplete } from "antd";
+import { Input } from "antd";
 
 function mapStateToProps(state) {
 	return {
@@ -20,15 +18,13 @@ function mapDispatchToProps(dispatch) {
 	};
 }
 
-const Home = ({id }) => {
+const Home = ({ id }) => {
 	const [socket] = Socket.useContainer();
 
 	const onSearch = (value) => {
 		socket.emitPromise("searchSite", { id, value });
 	};
-	return (
-		<Input.Search size="large" placeholder="Search App" enterButton onSearch={onSearch} />
-	);
+	return <Input.Search size="large" placeholder="Search App" enterButton onSearch={onSearch} />;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import React from "react";
 import { createTab } from "../store/tabs/slice";
 
-import { Row, Col, Button } from "antd";
+import { Col } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Socket } from "../services/sockets";
 

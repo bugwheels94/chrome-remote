@@ -98,7 +98,7 @@ function App() {
 				meta: { arg: bookmark },
 			});
 		});
-	}, []);
+	}, [dispatch, setSocket]);
 	if (!socket) return null;
 	return (
 		<Space direction="vertical" size="large" style={{ width: "100%" }}>
