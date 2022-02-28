@@ -1,4 +1,5 @@
-import createAsyncThunkPlus from "create-async-thunk-plus";
+import createAsyncThunkPlus from "../../thunkPlus";
+
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 const entityAdapter = createEntityAdapter({
 	selectId: (entity) => entity.id,
@@ -36,8 +37,7 @@ export const removeBookmark = createAsyncThunkPlus(
 const slice = createSlice({
 	name: "bookmarks",
 	initialState: entityAdapter.getInitialState(),
-	reducers: {
-	},
+	reducers: {},
 	extraReducers: {
 		...createBookmark.reducers,
 		...readBookmarks.reducers,

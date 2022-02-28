@@ -1,5 +1,5 @@
-import createAsyncThunkPlus from "create-async-thunk-plus";
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import createAsyncThunkPlus from "../../thunkPlus";
 const entityAdapter = createEntityAdapter({
 	selectId: (entity) => entity.id,
 });
@@ -51,42 +51,24 @@ export const removeTab = createAsyncThunkPlus(
 		CRUDMode: "remove",
 	}
 );
-export const searchInTab = createAsyncThunkPlus(
-	"tabs/searchInTab",
-	({ socket, ...options }) => {
-		return socket.emitPromise("searchInTab", options);
-	},
-);
-export const reloadTab = createAsyncThunkPlus(
-	"tabs/reloadTab",
-	({ socket, ...options }) => {
-		return socket.emitPromise("reloadTab", options);
-	},
-);
-export const goBackward = createAsyncThunkPlus(
-	"tabs/goback",
-	({ socket, ...options }) => {
-		return socket.emitPromise("navigateTab", { ...options, direction: 'backward' });
-	},
-);
-export const goForward = createAsyncThunkPlus(
-	"tabs/goforward",
-	({ socket, ...options }) => {
-		return socket.emitPromise("navigateTab", { ...options, direction: 'forward' });
-	},
-);
-export const zoomIn = createAsyncThunkPlus(
-	"tabs/zoomIn",
-	({ socket, ...options }) => {
-		return socket.emitPromise("zoom", { ...options, factor: 'in' });
-	},
-);
-export const zoomOut = createAsyncThunkPlus(
-	"tabs/zoomOut",
-	({ socket, ...options }) => {
-		return socket.emitPromise("zoom", { ...options, factor: 'out' });
-	},
-);
+export const searchInTab = createAsyncThunkPlus("tabs/searchInTab", ({ socket, ...options }) => {
+	return socket.emitPromise("searchInTab", options);
+});
+export const reloadTab = createAsyncThunkPlus("tabs/reloadTab", ({ socket, ...options }) => {
+	return socket.emitPromise("reloadTab", options);
+});
+export const goBackward = createAsyncThunkPlus("tabs/goback", ({ socket, ...options }) => {
+	return socket.emitPromise("navigateTab", { ...options, direction: "backward" });
+});
+export const goForward = createAsyncThunkPlus("tabs/goforward", ({ socket, ...options }) => {
+	return socket.emitPromise("navigateTab", { ...options, direction: "forward" });
+});
+export const zoomIn = createAsyncThunkPlus("tabs/zoomIn", ({ socket, ...options }) => {
+	return socket.emitPromise("zoom", { ...options, factor: "in" });
+});
+export const zoomOut = createAsyncThunkPlus("tabs/zoomOut", ({ socket, ...options }) => {
+	return socket.emitPromise("zoom", { ...options, factor: "out" });
+});
 
 const slice = createSlice({
 	name: "tabs",
@@ -103,11 +85,11 @@ const slice = createSlice({
 		...updateTab.reducers,
 		...removeTab.reducers,
 		...searchInTab.reducers,
-		...reloadTab.reducers
+		...reloadTab.reducers,
 	},
 });
 export const { setActive } = slice.actions;
 export const selectors = entityAdapter.getSelectors((state) => {
-	return state.tabs
+	return state.tabs;
 });
 export default slice.reducer;

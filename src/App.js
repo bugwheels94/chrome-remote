@@ -10,7 +10,7 @@ import NavigationButtons from "./components/NavigationButtons";
 import ZoomButtons from "./components/ZoomButtons";
 import { useDispatch } from "react-redux";
 import { Socket } from "./services/sockets";
-import { Space, Row } from 'antd';
+import { Space, Row } from "antd";
 import { createTab, removeTab, updateTab, readTabs, setActive } from "./store/tabs/slice";
 import { createBookmark, removeBookmark, readBookmarks } from "./store/bookmarks/slice";
 import VideoPlayerButtons from "./components/VideoPlayerButtons";
@@ -19,12 +19,11 @@ import SiteSearch from "./components/SiteSearch";
 
 const io = require("socket.io-client");
 
-
 function App() {
 	const dispatch = useDispatch();
 	const [socket, setSocket] = Socket.useContainer();
 	useEffect(() => {
-		const newSocket = io("ws://192.168.29.147:3001/remote", {
+		const newSocket = io("ws://192.168.29.48:3001/remote", {
 			reconnectionDelayMax: 3000,
 			transports: ["websocket"],
 		});
@@ -42,10 +41,10 @@ function App() {
 
 		newSocket.on("error", (e) => console.log(e));
 		newSocket.on("tvState", (tabs) => {
-      const tab = tabs.filter(tab => tab.active === true)
-      if (tab.length) {
-        dispatch(setActive(tab[0]))
-      }
+			const tab = tabs.filter((tab) => tab.active === true);
+			if (tab.length) {
+				dispatch(setActive(tab[0]));
+			}
 			dispatch({
 				...readTabs.fulfilled(),
 				payload: {
@@ -99,28 +98,24 @@ function App() {
 				meta: { arg: bookmark },
 			});
 		});
-    
 	}, []);
 	if (!socket) return null;
 	return (
-		<Space direction="vertical" size="large" style={{width: "100%"}}>
+		<Space direction="vertical" size="large" style={{ width: "100%" }}>
 			<HistorySearch />
-      <Row justify="center" align="middle">
-
-  			<CreateTab />
-        <NavigationButtons />
-        <ZoomButtons />
-        <ReloadTab />
-        <VideoPlayerButtons /> 
-        <PointerButton /> 
-        <SiteSearch /> 
-
-      </Row>
+			<Row justify="center" align="middle">
+				<CreateTab />
+				<NavigationButtons />
+				<ZoomButtons />
+				<ReloadTab />
+				<VideoPlayerButtons />
+				<PointerButton />
+				<SiteSearch />
+			</Row>
 			<Tabs />
 			<Bookmarks />
 		</Space>
 	);
 }
-
 
 export default App;
